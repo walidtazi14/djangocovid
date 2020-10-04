@@ -1,0 +1,57 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+<form class="form-group" action="" method="post" novalidate>
+  <table class="table table-dark">
+    {{ form.as_table }}
+    <tr>
+      <td>&nbsp;</td>
+           <td><input type="submit" value="Submit"></td>
+    </tr>
+  </table>
+  {% csrf_token %}
+  </form>
+
+    <div class="container"><br>
+        <h2>case List</h2>
+        <hr>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>country</th>
+                    <th>number of cases</th>
+                    <th>Actioins</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in res %}
+
+                    <tr>
+                    <td>{{ country.country }}</td>
+                    <td>{{ country.Value }}</td>
+                    <td><a class="btn btn-info" href="/edit/{{ book.id }}">Edit</a>
+                        <a class="btn btn-danger" href="/delete/{{ book.id }}">Delete</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" href="/add_book/">Add Book</a>
+    </div>
+
+</body>
+</html>
